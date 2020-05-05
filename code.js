@@ -7,8 +7,8 @@ function setup() {
     game_started = false
     ball_x = width / 2
     ball_y = height / 2
-    velocity_x = random(5)
-    velocity_y = random(5)
+    velocity_x = random(-5, 5)
+    velocity_y = random(-5, 5)
 }
 
 function draw() {
@@ -18,6 +18,14 @@ function draw() {
     if(game_started) {
         ball_x = ball_x + velocity_x
         ball_y = ball_y + velocity_y
+        
+        if (ball_x > (width - BALL_RADIUS / 2) || (ball_x < (0 + BALL_RADIUS / 2))) {
+            velocity_x = velocity_x * -1
+        }
+
+        if (ball_y < 0 + BALL_RADIUS / 2) {
+            velocity_y = velocity_y * -1
+        }
     }
 
     ellipse(ball_x, ball_y, BALL_RADIUS)
