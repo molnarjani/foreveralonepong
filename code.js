@@ -11,8 +11,9 @@ function draw() {
     noStroke()
 
     ellipse(width/2, height/2, BALL_RADIUS)
+    
     rect(
-        (width / 2) - (PADDLE_WIDTH / 2),
+        constrain(mouseX, 0, width - PADDLE_WIDTH),
         400 - PADDLE_HEIGHT - PADDING_BOTTOM,
         PADDLE_WIDTH,
         PADDLE_HEIGHT
