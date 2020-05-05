@@ -18,21 +18,31 @@ function draw() {
     if(game_started) {
         ball_x = ball_x + velocity_x
         ball_y = ball_y + velocity_y
-        
+
+        // check left - right
         if (ball_x > (width - BALL_RADIUS / 2) || (ball_x < (0 + BALL_RADIUS / 2))) {
             velocity_x = velocity_x * -1
         }
 
+        // check top
         if (ball_y < 0 + BALL_RADIUS / 2) {
             velocity_y = velocity_y * -1
         }
+
+        // check paddle
+        if (
+            (ball_x > (mouseX - (PADDLE_WIDTH / 2)) || ball_x < (mouseX + (PADDLE_WIDTH / 2))) &
+            ball_y > (height - PADDLE_HEIGHT - PADDING_BOTTOM)
+            ) {
+                velocity_y = velocity_y * -1
+            }
     }
 
     ellipse(ball_x, ball_y, BALL_RADIUS)
     
     rect(
         constrain(mouseX, 0, width - PADDLE_WIDTH),
-        400 - PADDLE_HEIGHT - PADDING_BOTTOM,
+        height - PADDLE_HEIGHT - PADDING_BOTTOM,
         PADDLE_WIDTH,
         PADDLE_HEIGHT
     )
